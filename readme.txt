@@ -4,7 +4,7 @@ Tags: calculator, landscaping, gravel, mulch, blocks
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,10 @@ Imperial mode uses square feet, inches, cubic yards, and short tons. Metric mode
 uses square meters, centimeters, cubic meters, and metric tonnes.
 
 == Changelog ==
+
+= 1.0.1 =
+
+* Fix front-end rendering of the dynamic Gutenberg block.
 
 = 1.0.0 =
 

@@ -9,4 +9,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-return ymc_render_calculator( $attributes );
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Renderer escapes every dynamic attribute.
+echo ymc_render_calculator( $attributes );

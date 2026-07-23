@@ -34,6 +34,12 @@ test("plugin renders from one sanitized server-side path", async () => {
   assert.doesNotMatch(php, /https?:\/\/.*\.js/);
 });
 
+test("dynamic render template writes the escaped calculator markup", async () => {
+  const render = await read("render.php");
+  assert.match(render, /echo ymc_render_calculator\( \$attributes \)/);
+  assert.doesNotMatch(render, /return ymc_render_calculator/);
+});
+
 test("bundled widget matches its recorded digest", async () => {
   const widget = await readFile(join(root, "assets/widget.js"));
   const recorded = (await read("assets/widget.sha256")).split(/\s+/)[0];
@@ -55,7 +61,7 @@ test("Playground Blueprint installs the release and exercises both integrations"
   const blueprint = JSON.parse(await read("blueprint.json"));
   const serialized = JSON.stringify(blueprint);
   assert.equal(blueprint.steps[0].options.activate, true);
-  assert.match(serialized, /releases\/download\/v1\.0\.0\/yard-material-calculator\.zip/);
+  assert.match(serialized, /releases\/download\/v1\.0\.1\/yard-material-calculator\.zip/);
   assert.match(serialized, /wp:yard-material-tools\/yard-material-calculator/);
   assert.match(serialized, /\[yard_material_calculator/);
 });

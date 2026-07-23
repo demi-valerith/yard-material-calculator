@@ -3,7 +3,7 @@
  * Plugin Name: Yard Material Calculator
  * Plugin URI: https://yardmaterialtools.com/material-coverage-chart
  * Description: Add an imperial or metric yard material coverage calculator with a block or shortcode.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 6.5
  * Requires PHP: 7.4
  * Author: Demi Valerith
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const YMC_VERSION = '1.0.0';
+const YMC_VERSION = '1.0.1';
 
 /**
  * Register the dynamic block and locally bundled Web Component.

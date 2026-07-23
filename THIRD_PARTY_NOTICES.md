@@ -1,0 +1,16 @@
+# Third-party notices
+
+## Yard Material Coverage Data
+
+The bundled material density values come from Yard Material Coverage Data,
+dataset version 1.1.0:
+
+- Source: https://yardmaterialtools.com/material-coverage-chart
+- Repository: https://github.com/demi-valerith/yard-material-coverage-data
+- DOI: https://doi.org/10.5281/zenodo.21370505
+- License: Creative Commons Attribution 4.0 International
+
+## Yard Material Coverage Web Component
+
+`assets/widget.js` is sourced from
+`@demi-valerith/yard-material-coverage-data@1.3.0` and licensed under MIT.

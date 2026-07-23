@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "yard-material-tools/yard-material-calculator",
+  "version": "1.0.0",
+  "title": "Yard Material Calculator",
+  "category": "widgets",
+  "icon": "calculator",
+  "description": "Estimate material volume and a typical weight range.",
+  "keywords": ["gravel", "mulch", "landscaping"],
+  "textdomain": "yard-material-calculator",
+  "attributes": {
+    "material": {
+      "type": "string",
+      "default": "Pea gravel"
+    },
+    "materials": {
+      "type": "string",
+      "default": "Pea gravel,Crushed stone,River rock,Topsoil,Compost,Mulch,Sand,Fill dirt"
+    },
+    "area": {
+      "type": "number",
+      "default": 500
+    },
+    "depth": {
+      "type": "number",
+      "default": 3
+    },
+    "unit": {
+      "type": "string",
+      "default": "imperial"
+    },
+    "accent": {
+      "type": "string",
+      "default": "#ab4c29"
+    },
+    "showAttribution": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "editorScript": "file:./assets/editor.js",
+  "editorStyle": "file:./assets/editor.css",
+  "render": "file:./render.php"
+}

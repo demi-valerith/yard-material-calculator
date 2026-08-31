@@ -51,4 +51,4 @@ temporary WordPress site.
 
 The WordPress plugin is GPL-2.0-or-later. The bundled Web Component is MIT.
 The embedded density values are derived from the Yard Material Tools dataset,
-which is CC BY 4.0; attribution is retained in `THIRD_PARTY_NOTICES.md`.
+which is CC BY 4.0; attribution is retained in `third-party-notices.txt`.

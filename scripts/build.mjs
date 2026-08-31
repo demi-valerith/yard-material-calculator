@@ -10,7 +10,7 @@ const pluginRoot = join(stagingRoot, "yard-material-calculator");
 const files = [
   "LICENSE",
   "README.md",
-  "THIRD_PARTY_NOTICES.md",
+  "third-party-notices.txt",
   "assets/editor.css",
   "assets/editor.asset.php",
   "assets/editor.js",

@@ -18,7 +18,7 @@
     "Fill dirt",
   ];
 
-  blocks.registerBlockType("yard-material-tools/yard-material-calculator", {
+  blocks.registerBlockType("demi-yard-material-calculator/calculator", {
     edit: function ({ attributes, setAttributes }) {
       const areaUnit = attributes.unit === "metric" ? "m\u00B2" : "sq ft";
       const depthUnit = attributes.unit === "metric" ? "cm" : "in";
@@ -34,9 +34,9 @@
           {},
           el(
             PanelBody,
-            { title: __("Calculator settings", "yard-material-calculator"), initialOpen: true },
+            { title: __("Calculator settings", "demi-yard-material-calculator"), initialOpen: true },
             el(SelectControl, {
-              label: __("Default material", "yard-material-calculator"),
+              label: __("Default material", "demi-yard-material-calculator"),
               value: attributes.material,
               options: selectedMaterials.map(function (name) {
                 return { label: name, value: name };
@@ -46,18 +46,18 @@
               },
             }),
             el(SelectControl, {
-              label: __("Units", "yard-material-calculator"),
+              label: __("Units", "demi-yard-material-calculator"),
               value: attributes.unit,
               options: [
-                { label: __("Imperial", "yard-material-calculator"), value: "imperial" },
-                { label: __("Metric", "yard-material-calculator"), value: "metric" },
+                { label: __("Imperial", "demi-yard-material-calculator"), value: "imperial" },
+                { label: __("Metric", "demi-yard-material-calculator"), value: "metric" },
               ],
               onChange: function (value) {
                 setAttributes({ unit: value });
               },
             }),
             el(TextControl, {
-              label: __("Area", "yard-material-calculator"),
+              label: __("Area", "demi-yard-material-calculator"),
               type: "number",
               min: 0.01,
               value: attributes.area,
@@ -67,7 +67,7 @@
               },
             }),
             el(TextControl, {
-              label: __("Depth", "yard-material-calculator"),
+              label: __("Depth", "demi-yard-material-calculator"),
               type: "number",
               min: 0.01,
               value: attributes.depth,
@@ -77,15 +77,15 @@
               },
             }),
             el(TextControl, {
-              label: __("Accent color", "yard-material-calculator"),
+              label: __("Accent color", "demi-yard-material-calculator"),
               value: attributes.accent,
-              help: __("# followed by six hexadecimal digits", "yard-material-calculator"),
+              help: __("# followed by six hexadecimal digits", "demi-yard-material-calculator"),
               onChange: function (value) {
                 setAttributes({ accent: value });
               },
             }),
             el(ToggleControl, {
-              label: __("Show source attribution", "yard-material-calculator"),
+              label: __("Show source attribution", "demi-yard-material-calculator"),
               checked: attributes.showAttribution,
               onChange: function (value) {
                 setAttributes({ showAttribution: value });
@@ -94,7 +94,7 @@
           ),
           el(
             PanelBody,
-            { title: __("Available materials", "yard-material-calculator"), initialOpen: false },
+            { title: __("Available materials", "demi-yard-material-calculator"), initialOpen: false },
             materials.map(function (name) {
               const checked = selectedMaterials.includes(name);
               return el(ToggleControl, {
@@ -122,14 +122,14 @@
         el(
           "div",
           { className: "ymc-editor-preview", style: { borderLeftColor: attributes.accent } },
-          el("p", { className: "ymc-editor-kicker" }, __("Planning estimate", "yard-material-calculator")),
-          el("h3", {}, __("Yard material coverage", "yard-material-calculator")),
+          el("p", { className: "ymc-editor-kicker" }, __("Planning estimate", "demi-yard-material-calculator")),
+          el("h3", {}, __("Yard material coverage", "demi-yard-material-calculator")),
           el("dl", {},
-            el("div", {}, el("dt", {}, __("Material", "yard-material-calculator")), el("dd", {}, attributes.material)),
-            el("div", {}, el("dt", {}, __("Area", "yard-material-calculator")), el("dd", {}, attributes.area + " " + areaUnit)),
-            el("div", {}, el("dt", {}, __("Depth", "yard-material-calculator")), el("dd", {}, attributes.depth + " " + depthUnit))
+            el("div", {}, el("dt", {}, __("Material", "demi-yard-material-calculator")), el("dd", {}, attributes.material)),
+            el("div", {}, el("dt", {}, __("Area", "demi-yard-material-calculator")), el("dd", {}, attributes.area + " " + areaUnit)),
+            el("div", {}, el("dt", {}, __("Depth", "demi-yard-material-calculator")), el("dd", {}, attributes.depth + " " + depthUnit))
           ),
-          el("p", { className: "ymc-editor-note" }, __("Interactive calculation appears on the published page.", "yard-material-calculator"))
+          el("p", { className: "ymc-editor-note" }, __("Interactive calculation appears on the published page.", "demi-yard-material-calculator"))
         )
       );
     },

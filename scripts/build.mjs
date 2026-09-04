@@ -4,9 +4,10 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const output = join(root, "dist/yard-material-calculator.zip");
+const output = join(root, "dist/demi-yard-material-calculator.zip");
+const legacyOutput = join(root, "dist/yard-material-calculator.zip");
 const stagingRoot = join(root, "dist/staging");
-const pluginRoot = join(stagingRoot, "yard-material-calculator");
+const pluginRoot = join(stagingRoot, "demi-yard-material-calculator");
 const files = [
   "LICENSE",
   "README.md",
@@ -19,11 +20,12 @@ const files = [
   "block.json",
   "readme.txt",
   "render.php",
-  "yard-material-calculator.php",
+  "demi-yard-material-calculator.php",
 ];
 
 await mkdir(dirname(output), { recursive: true });
 await rm(output, { force: true });
+await rm(legacyOutput, { force: true });
 await rm(stagingRoot, { force: true, recursive: true });
 
 for (const file of files) {
@@ -32,7 +34,7 @@ for (const file of files) {
   await copyFile(join(root, file), destination);
 }
 
-const result = spawnSync("zip", ["-q", "-r", output, "yard-material-calculator"], {
+const result = spawnSync("zip", ["-q", "-r", output, "demi-yard-material-calculator"], {
   cwd: stagingRoot,
   stdio: "inherit",
 });

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import test from "node:test";
@@ -12,9 +12,23 @@ const read = (path) => readFile(join(root, path), "utf8");
 test("block metadata declares a dynamic API v3 block", async () => {
   const metadata = JSON.parse(await read("block.json"));
   assert.equal(metadata.apiVersion, 3);
-  assert.equal(metadata.name, "yard-material-tools/yard-material-calculator");
+  assert.equal(metadata.name, "demi-yard-material-calculator/calculator");
+  assert.equal(metadata.textdomain, "demi-yard-material-calculator");
   assert.equal(metadata.render, "file:./render.php");
   assert.equal(metadata.attributes.showAttribution.default, false);
+});
+
+test("WordPress.org identity matches the reviewed name and owner account", async () => {
+  const php = await read("demi-yard-material-calculator.php");
+  const readme = await read("readme.txt");
+
+  assert.match(php, /Plugin Name: Demi Yard Material Calculator/);
+  assert.match(php, /Text Domain: demi-yard-material-calculator/);
+  assert.match(php, /Author URI: https:\/\/profiles\.wordpress\.org\/demi1\//);
+  assert.doesNotMatch(php, /Plugin URI:/);
+  assert.match(readme, /^=== Demi Yard Material Calculator ===$/m);
+  assert.match(readme, /^Contributors: demi1$/m);
+  assert.match(readme, /^Stable tag: 1\.0\.2$/m);
 });
 
 test("block editor declares every WordPress runtime dependency", async () => {
@@ -25,7 +39,7 @@ test("block editor declares every WordPress runtime dependency", async () => {
 });
 
 test("plugin renders from one sanitized server-side path", async () => {
-  const php = await read("yard-material-calculator.php");
+  const php = await read("demi-yard-material-calculator.php");
   assert.match(php, /sanitize_text_field/);
   assert.match(php, /sanitize_hex_color/);
   assert.match(php, /esc_attr/);
@@ -47,21 +61,25 @@ test("bundled widget matches its recorded digest", async () => {
 });
 
 test("installable ZIP has one plugin directory and no development files", () => {
-  const listing = execFileSync("unzip", ["-Z1", "dist/yard-material-calculator.zip"], {
+  const listing = execFileSync("unzip", ["-Z1", "dist/demi-yard-material-calculator.zip"], {
     cwd: root,
     encoding: "utf8",
   }).trim().split("\n");
 
-  assert.ok(listing.every((path) => path.startsWith("yard-material-calculator/")));
-  assert.ok(listing.includes("yard-material-calculator/yard-material-calculator.php"));
+  assert.ok(listing.every((path) => path.startsWith("demi-yard-material-calculator/")));
+  assert.ok(listing.includes("demi-yard-material-calculator/demi-yard-material-calculator.php"));
   assert.ok(!listing.some((path) => path.includes("node_modules") || path.includes("/test/")));
+});
+
+test("build removes the superseded generic-slug ZIP", async () => {
+  await assert.rejects(access(join(root, "dist/yard-material-calculator.zip")));
 });
 
 test("Playground Blueprint installs the release and exercises both integrations", async () => {
   const blueprint = JSON.parse(await read("blueprint.json"));
   const serialized = JSON.stringify(blueprint);
   assert.equal(blueprint.steps[0].options.activate, true);
-  assert.match(serialized, /releases\/download\/v1\.0\.1\/yard-material-calculator\.zip/);
-  assert.match(serialized, /wp:yard-material-tools\/yard-material-calculator/);
+  assert.match(serialized, /releases\/download\/v1\.0\.2\/demi-yard-material-calculator\.zip/);
+  assert.match(serialized, /wp:demi-yard-material-calculator\/calculator/);
   assert.match(serialized, /\[yard_material_calculator/);
 });

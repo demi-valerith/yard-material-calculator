@@ -1,9 +1,9 @@
-# Yard Material Calculator for WordPress
+# Demi Yard Material Calculator for WordPress
 
 Add a locally hosted yard material calculator with either a Gutenberg block or
 the `[yard_material_calculator]` shortcode.
 
-![Yard Material Calculator for WordPress showing a river rock estimate in metric units](assets/wordpress-calculator-demo.jpg)
+![Demi Yard Material Calculator for WordPress showing a river rock estimate in metric units](assets/wordpress-calculator-demo.jpg)
 
 The plugin bundles the Web Component from
 [`@demi-valerith/yard-material-coverage-data`](https://www.npmjs.com/package/@demi-valerith/yard-material-coverage-data).
